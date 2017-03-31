@@ -24,6 +24,8 @@ public class ExampleApiWithSwagger {
             });
         });
 
+        staticFileLocation("/META-INF/resources/webjars/swagger-ui/2.2.10-1");
+
         get("/apidoc/swagger", (q, a) -> SwaggerService.getSwaggerJson());
 
         get("/list", (req, res) -> {
