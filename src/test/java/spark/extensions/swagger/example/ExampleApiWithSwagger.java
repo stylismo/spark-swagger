@@ -1,6 +1,7 @@
 package spark.extensions.swagger.example;
 
 import com.stylismo.sparkswagger.example.UserApi;
+import org.eclipse.jetty.util.resource.Resource;
 import spark.route.SwaggerService;
 
 import static spark.extensions.swagger.SparkSwagger.*;
@@ -24,6 +25,13 @@ public class ExampleApiWithSwagger {
         });
 
         get("/apidoc/swagger", (q, a) -> SwaggerService.getSwaggerJson());
+
+        get("/list", (req, res) -> {
+            Resource resource = Resource.newClassPathResource("/META-INF/resources");
+            return resource.getListHTML("/", true);
+        });
+
+        exception(Exception.class, (exception, request, response) -> exception.printStackTrace());
     }
 
 }
